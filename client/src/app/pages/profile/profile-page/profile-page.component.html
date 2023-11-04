@@ -1,0 +1,12 @@
+<div className='h-screen w-full flex flex-col bg-[#f4f3f4] dark:bg-[#0e0c0e]'>
+	<app-navbar></app-navbar>
+	<div className='flex justify-center h-full pt-8 px-24 gap-12'>
+		<div className='w-[450px] max-lg:hidden'>
+			<app-profile-info ></app-profile-info>
+		</div>
+		<div className='flex flex-col gap-12 w-[700px]'>
+			<app-send-post></app-send-post>
+			<app-profile-feed [posts]="posts"></app-profile-feed>
+		</div>
+	</div>
+</div>
