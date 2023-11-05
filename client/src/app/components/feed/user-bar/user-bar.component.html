@@ -1,6 +1,7 @@
 <div class='w-full flex items-center'>
     <div class='flex items-center gap-4 flex-1'>
-        <div class='h-12 w-12 bg-black rounded-full hover:cursor-pointer'></div>
+        <div class='h-12 w-12 bg-black rounded-full hover:cursor-pointer'
+			(click)="navigateToProfile(user.username)"></div>
         <div>
             <p class='text-black dark:text-white'>{{ user.username }}</p>
             <p class='text-xs text-[#5e5d5e]'>{{ user.job }}</p>

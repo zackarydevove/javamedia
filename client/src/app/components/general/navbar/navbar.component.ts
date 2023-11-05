@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { faSearch, faBars, faMoon, faCommentAlt, faBell, faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-navbar',
@@ -10,13 +9,9 @@ import { faSearch, faBars, faMoon, faCommentAlt, faBell, faArrowUpRightFromSquar
 export class NavbarComponent {
 	searchTerm: string = '';
 	showDropdown: boolean = false;
-	faSearch = faSearch;
-	faBars = faBars;
-	faMoon = faMoon;
-	faCommentAlt = faCommentAlt;
-	faBell = faBell;
-	faArrowUpRightFromSquare = faArrowUpRightFromSquare;
 	users: any[] = [];
+
+	// onChange of searchTerm, fetchSearch
   
 	constructor(private router: Router) {}
   

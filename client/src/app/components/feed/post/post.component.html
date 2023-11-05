@@ -4,7 +4,8 @@
 
     <div class='w-full flex'>
         <div class='flex items-center gap-4 flex-1'>
-            <div class='h-12 w-12 bg-black rounded-full'></div>
+            <div class='h-12 w-12 bg-black rounded-full hover:cursor-pointer'
+				(click)="navigateToProfile(post.creator.username)"></div>
             <div>
                 <p class='text-black dark:text-white'>{{ post.creator.username }}</p>
                 <p class='text-xs text-[#5e5d5e]'>{{ post.creator.job }}</p>

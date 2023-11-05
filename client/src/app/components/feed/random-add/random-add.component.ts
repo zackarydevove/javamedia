@@ -7,6 +7,12 @@ import { UserInterface } from 'src/app/interfaces/UserInterface';
   styleUrls: ['./random-add.component.scss']
 })
 export class RandomAddComponent {
+
+	// current User
+	// random Users
+
+	// onInit fetchRandomUsers
+
 	randomUsers: UserInterface[] = [
 		{
 			id: 1,

@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./options-dropdown.component.scss']
 })
 export class OptionsDropdownComponent {
-
+	// @Input onDelete
 }

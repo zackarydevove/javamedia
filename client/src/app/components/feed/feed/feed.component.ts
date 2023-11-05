@@ -8,6 +8,11 @@ import { PostInterface, UserInterface } from 'src/app/interfaces/UserInterface';
 })
 export class FeedComponent {
 
+	// currentUser
+	// posts
+
+	// onInit, getUser and fetchPosts
+
 	users: UserInterface[] = [
 		{
 			id: 1,

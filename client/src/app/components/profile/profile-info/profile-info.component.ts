@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile-info',
@@ -14,5 +15,11 @@ export class ProfileInfoComponent {
 	  job: 'Software Developer'
 	};
   
-	constructor() { }
+	// onInit fetchCheckIfUserIsFollowing
+
+	constructor(private router: Router) {}
+
+	navigate(path: string) {
+		this.router.navigateByUrl(path);
+	}
 }

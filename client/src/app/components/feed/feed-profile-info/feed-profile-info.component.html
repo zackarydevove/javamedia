@@ -1,7 +1,8 @@
 <div class='sticky top-[87px] z-20 bg-white dark:bg-[#191819] w-full rounded-xl p-5 text-black dark:text-white'>
 	<div class='flex items-center '>
 	  <div class='flex items-center gap-4 flex-1'>
-		<div class='h-14 w-14 bg-black rounded-full hover:cursor-pointer'></div>
+		<div class='h-14 w-14 bg-black rounded-full hover:cursor-pointer'
+			(click)="navigateToProfile()"></div>
 		<div class='flex flex-col'>
 		  <ng-container *ngIf="true; else viewMode">
 			<input class='bg-white dark:bg-[#191819] text-lg font-bold' placeholder="Username" />
