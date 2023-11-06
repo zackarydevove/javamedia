@@ -25,6 +25,8 @@ import { ProfileInfoComponent } from './components/profile/profile-info/profile-
 import { SearchDropdownComponent } from './components/search/search-dropdown/search-dropdown.component';
 import { UserSearchComponentComponent } from './components/search/user-search-component/user-search-component.component';
 import { ProfilePageComponent } from './pages/profile/profile-page/profile-page.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -54,7 +56,9 @@ import { ProfilePageComponent } from './pages/profile/profile-page/profile-page.
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+	HttpClientModule,
+	FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
