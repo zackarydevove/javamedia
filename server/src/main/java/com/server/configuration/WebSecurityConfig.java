@@ -7,6 +7,8 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -16,9 +18,13 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class WebSecurityConfig {
 
     @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-            // Disable CSRF for stateless authentication (no need to handle sessions)
             .csrf(csrf -> csrf.disable())
             .sessionManagement(sessionManagement ->
                 sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
@@ -26,8 +32,7 @@ public class WebSecurityConfig {
                 authorizeRequests
                     .requestMatchers(HttpMethod.POST, "/api/auth/login", "/api/auth/register").permitAll()
                     .anyRequest().authenticated())
-            // Add additional configuration here if necessary
-            ;
+			;
 
         return http.build();
     }
@@ -42,13 +47,15 @@ public class WebSecurityConfig {
                         .allowedMethods(
 							HttpMethod.GET.name(),
                             HttpMethod.POST.name(),
-                            HttpMethod.DELETE.name()
+                            HttpMethod.DELETE.name(),
+                            HttpMethod.PATCH.name()
 						)
                         .allowedHeaders(
 							HttpHeaders.CONTENT_TYPE,
                             HttpHeaders.AUTHORIZATION
 						)
-						.allowCredentials(true);
+						.allowCredentials(true)
+				;
             }
         };
     }

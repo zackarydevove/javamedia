@@ -1,6 +1,7 @@
 package com.server.controller;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +12,7 @@ import com.server.service.AuthService;
 import com.server.dto.AuthRequest;
 import com.server.dto.RegisterRequest;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("api/auth")
 public class AuthController {
@@ -23,7 +25,10 @@ public class AuthController {
 
 	@PostMapping("/login")
 	public ResponseEntity<String> loginUser(@RequestBody AuthRequest authRequest) {
-        String token = authService.loginUser(authRequest.getEmail(), authRequest.getPassword());
+        String token = authService.loginUser(
+			authRequest.getEmail(),
+			authRequest.getPassword()
+		);
         return ResponseEntity.ok(token);
 	}
 
