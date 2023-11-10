@@ -1,7 +1,6 @@
 package com.server.controller;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,9 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.server.service.AuthService;
 
 import com.server.dto.AuthRequest;
+import com.server.dto.AuthResponse;
 import com.server.dto.RegisterRequest;
+import com.server.dto.RegisterResponse;
 
-@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("api/auth")
 public class AuthController {
@@ -24,22 +24,14 @@ public class AuthController {
     }
 
 	@PostMapping("/login")
-	public ResponseEntity<String> loginUser(@RequestBody AuthRequest authRequest) {
-        String token = authService.loginUser(
-			authRequest.getEmail(),
-			authRequest.getPassword()
-		);
+	public ResponseEntity<AuthResponse> loginUser(@RequestBody AuthRequest authRequest) {
+        AuthResponse token = authService.loginUser(authRequest);
         return ResponseEntity.ok(token);
 	}
 
 	@PostMapping("/register")
-	public ResponseEntity<String> registerUser(@RequestBody RegisterRequest registerRequest) {
-        String token = authService.registerUser(
-            registerRequest.getEmail(),
-            registerRequest.getPassword(),
-            registerRequest.getConfirmPassword(),
-            registerRequest.getUsername()
-        );
+	public ResponseEntity<RegisterResponse> registerUser(@RequestBody RegisterRequest registerRequest) {
+        RegisterResponse token = authService.registerUser(registerRequest);
         return ResponseEntity.ok(token);
 	}
 }

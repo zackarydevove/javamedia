@@ -1,13 +1,14 @@
 package com.server.service;
 
-import java.sql.Date;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.auth0.jwt.JWT;
-import com.auth0.jwt.algorithms.Algorithm;
+import com.server.configuration.UserAuthProvider;
+import com.server.dto.AuthRequest;
+import com.server.dto.AuthResponse;
+import com.server.dto.RegisterRequest;
+import com.server.dto.RegisterResponse;
 import com.server.model.User;
 import com.server.repository.UserRepository;
 
@@ -20,11 +21,13 @@ public class AuthService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    private static final String ISSUER = "your-app-name";
-    private static final long EXPIRATION_TIME = 864_000_000;
-    private static final String SECRET = "your-secret-key";
+	@Autowired
+	private UserAuthProvider userAuthProvider;
 
-	public String loginUser(String email, String password) {
+	public AuthResponse loginUser(AuthRequest authRequest) {
+		String email = authRequest.getEmail();
+		String password = authRequest.getPassword();
+
         if (!isEmailValid(email)) {
             throw new IllegalArgumentException("Invalid email");
         }
@@ -42,16 +45,19 @@ public class AuthService {
 			throw new IllegalArgumentException("Invalid password");
 		}
 
-        String token = JWT.create()
-                .withSubject(user.getUsername())
-                .withExpiresAt(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
-                .withIssuer(ISSUER)
-                .sign(Algorithm.HMAC512(SECRET));
+        String token = userAuthProvider.createToken(user.getUsername());
 
-        return token;
+		AuthResponse response = new AuthResponse(token);
+
+        return response;
 	}
 
-    public String registerUser(String email, String password, String confirmPassword, String username) {
+    public RegisterResponse registerUser(RegisterRequest registerRequest) {
+		String email = registerRequest.getEmail();
+		String password = registerRequest.getPassword();
+		String confirmPassword = registerRequest.getConfirmPassword();
+		String username = registerRequest.getUsername();
+
         if (!isEmailValid(email)) {
             throw new IllegalArgumentException("Invalid email");
         }
@@ -81,13 +87,11 @@ public class AuthService {
         User user = new User(email, hashedPassword, username);
         userRepository.save(user);
 
-        String token = JWT.create()
-                .withSubject(username)
-                .withExpiresAt(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
-                .withIssuer(ISSUER)
-                .sign(Algorithm.HMAC512(SECRET));
+        String token = userAuthProvider.createToken(username);
 
-        return token;
+		RegisterResponse response = new RegisterResponse(token);
+
+        return response;
     }
 
     private boolean isEmailValid(String email) {
@@ -95,7 +99,6 @@ public class AuthService {
     	return email.matches(emailRegex);
     }
 
-	// a-z A-Z 0-9 !@#$%^&*()_+=-{}|:<>? 8+
     private boolean isPasswordValid(String password) {
 		String passwordRegex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+=\\-{}|:<>?]).{8,}$";
 		return password.matches(passwordRegex);
