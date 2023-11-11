@@ -28,13 +28,13 @@ public class AuthService {
 		String email = authRequest.getEmail();
 		String password = authRequest.getPassword();
 
-        if (!isEmailValid(email)) {
-            throw new IllegalArgumentException("Invalid email");
-        }
+        // if (!isEmailValid(email)) {
+        //     throw new IllegalArgumentException("Invalid email");
+        // }
 
-        if (!isPasswordValid(password)) {
-            throw new IllegalArgumentException("Invalid password");
-        }
+        // if (!isPasswordValid(password)) {
+        //     throw new IllegalArgumentException("Invalid password");
+        // }
 
 		User user = userRepository.findByEmail(email);
 		if (user == null) {
@@ -58,17 +58,17 @@ public class AuthService {
 		String confirmPassword = registerRequest.getConfirmPassword();
 		String username = registerRequest.getUsername();
 
-        if (!isEmailValid(email)) {
-            throw new IllegalArgumentException("Invalid email");
-        }
+        // if (!isEmailValid(email)) {
+        //     throw new IllegalArgumentException("Invalid email");
+        // }
 
-        if (!isPasswordValid(password)) {
-            throw new IllegalArgumentException("Invalid password");
-        }
+        // if (!isPasswordValid(password)) {
+        //     throw new IllegalArgumentException("Invalid password");
+        // }
 
-        if (!isUsernameValid(username)) {
-            throw new IllegalArgumentException("Invalid username");
-        }
+        // if (!isUsernameValid(username)) {
+        //     throw new IllegalArgumentException("Invalid username");
+        // }
 
         if (userRepository.existsByEmail(email)) {
             throw new IllegalArgumentException("User with email already exists");
@@ -94,18 +94,18 @@ public class AuthService {
         return response;
     }
 
-    private boolean isEmailValid(String email) {
-        String emailRegex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$";
-    	return email.matches(emailRegex);
-    }
+    // private boolean isEmailValid(String email) {
+    //     String emailRegex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$";
+    // 	return email.matches(emailRegex);
+    // }
 
-    private boolean isPasswordValid(String password) {
-		String passwordRegex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+=\\-{}|:<>?]).{8,}$";
-		return password.matches(passwordRegex);
-    }
+    // private boolean isPasswordValid(String password) {
+	// 	String passwordRegex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+=\\-{}|:<>?]).{8,}$";
+	// 	return password.matches(passwordRegex);
+    // }
 
-    private boolean isUsernameValid(String username) {
-        String usernameRegex = "^[a-z]+$";
-    	return username.matches(usernameRegex);
-    }
+    // private boolean isUsernameValid(String username) {
+    //     String usernameRegex = "^[a-z]+$";
+    // 	return username.matches(usernameRegex);
+    // }
 }

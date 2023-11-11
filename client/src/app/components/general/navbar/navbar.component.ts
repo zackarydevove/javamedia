@@ -29,6 +29,8 @@ export class NavbarComponent {
   
 	handleLogout() {
 		console.log("logout");
+		localStorage.removeItem('authToken');
+		this.router.navigateByUrl('/login');
 	}
 
 }

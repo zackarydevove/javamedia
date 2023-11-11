@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService, RegisterPayload } from 'src/app/services/auth/auth.service';
 
 @Component({
@@ -12,7 +13,7 @@ export class SignupComponent {
 	password: string = '';
 	confirmPassword: string = '';
   
-	constructor(private authService: AuthService) {}
+	constructor(private authService: AuthService, private router: Router) {}
   
 	register(): void {
 	  const payload: RegisterPayload = {
@@ -24,8 +25,9 @@ export class SignupComponent {
 	  
 	  this.authService.register(payload).subscribe({
 		next: (response) => {
-		  // Handle response
 		  console.log(response);
+		  localStorage.setItem('authToken', response.token);
+		  this.router.navigateByUrl('/feed');
 		},
 		error: (error) => {
 		  // Handle error

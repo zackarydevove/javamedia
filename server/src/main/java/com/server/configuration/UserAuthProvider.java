@@ -7,13 +7,18 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 
+import lombok.RequiredArgsConstructor;
+
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.stereotype.Component;
 
+@RequiredArgsConstructor
+@Component
 public class UserAuthProvider {
 	
-	String issuer = "javamedia";
-	String secretKey = "jdisa2138dansk%$534ndasnj2";	
+	private String issuer = "javamedia";
+	private String secretKey = "jdisa2138dansk%$534ndasnj2";	
 
 	public String createToken(String username) {
 		long expirationTime = 864_000_000;
