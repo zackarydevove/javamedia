@@ -1,4 +1,4 @@
-package com.server.dto;
+package com.server.dto.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -6,14 +6,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Setter
 @Getter
-@AllArgsConstructor
+@Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
-public class AuthRequest {
-
-    private String email;
-    private String password;
+public class ChangeUsernameRequest {
+	
+	private Long userId;
+	private String newUsername;
 	
 }

@@ -43,4 +43,5 @@ public class UserAuthProvider {
 
        return new UsernamePasswordAuthenticationToken(decoded.getSubject(), null, null);
 	}
+
 }

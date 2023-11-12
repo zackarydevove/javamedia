@@ -12,9 +12,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "users") // have to add this bc postgres has a table called user
 @Getter
 @Setter
+@Table(name = "users")
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
@@ -43,4 +43,5 @@ public class User {
         this.password = password;
         this.username = username;
     }
+
 }

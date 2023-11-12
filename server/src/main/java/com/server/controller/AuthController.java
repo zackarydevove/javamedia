@@ -6,12 +6,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.server.dto.auth.AuthRequest;
+import com.server.dto.auth.RegisterRequest;
 import com.server.service.AuthService;
-
-import com.server.dto.AuthRequest;
-import com.server.dto.AuthResponse;
-import com.server.dto.RegisterRequest;
-import com.server.dto.RegisterResponse;
 
 @RestController
 @RequestMapping("api/auth")
@@ -24,14 +21,14 @@ public class AuthController {
     }
 
 	@PostMapping("/login")
-	public ResponseEntity<AuthResponse> loginUser(@RequestBody AuthRequest authRequest) {
-        AuthResponse token = authService.loginUser(authRequest);
+	public ResponseEntity<String> loginUser(@RequestBody AuthRequest authRequest) {
+        String token = authService.loginUser(authRequest);
         return ResponseEntity.ok(token);
 	}
 
 	@PostMapping("/register")
-	public ResponseEntity<RegisterResponse> registerUser(@RequestBody RegisterRequest registerRequest) {
-        RegisterResponse token = authService.registerUser(registerRequest);
+	public ResponseEntity<String> registerUser(@RequestBody RegisterRequest registerRequest) {
+        String token = authService.registerUser(registerRequest);
         return ResponseEntity.ok(token);
 	}
 }

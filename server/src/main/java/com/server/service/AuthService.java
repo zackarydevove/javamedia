@@ -5,10 +5,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.server.configuration.UserAuthProvider;
-import com.server.dto.AuthRequest;
-import com.server.dto.AuthResponse;
-import com.server.dto.RegisterRequest;
-import com.server.dto.RegisterResponse;
+import com.server.dto.auth.AuthRequest;
+import com.server.dto.auth.RegisterRequest;
 import com.server.model.User;
 import com.server.repository.UserRepository;
 
@@ -24,7 +22,7 @@ public class AuthService {
 	@Autowired
 	private UserAuthProvider userAuthProvider;
 
-	public AuthResponse loginUser(AuthRequest authRequest) {
+	public String loginUser(AuthRequest authRequest) {
 		String email = authRequest.getEmail();
 		String password = authRequest.getPassword();
 
@@ -47,12 +45,10 @@ public class AuthService {
 
         String token = userAuthProvider.createToken(user.getUsername());
 
-		AuthResponse response = new AuthResponse(token);
-
-        return response;
+        return token;
 	}
 
-    public RegisterResponse registerUser(RegisterRequest registerRequest) {
+    public String registerUser(RegisterRequest registerRequest) {
 		String email = registerRequest.getEmail();
 		String password = registerRequest.getPassword();
 		String confirmPassword = registerRequest.getConfirmPassword();
@@ -89,9 +85,7 @@ public class AuthService {
 
         String token = userAuthProvider.createToken(username);
 
-		RegisterResponse response = new RegisterResponse(token);
-
-        return response;
+        return token;
     }
 
     // private boolean isEmailValid(String email) {
