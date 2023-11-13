@@ -13,7 +13,9 @@
         </div>
         <div>
             <div class='relative'>
-				<div class="h-8 w-8 bg-black rounded-full"></div>
+				<div class="h-8 w-8 rounded-full flex justify-center items-center text-black dark:text-white hover:cursor-pointer">
+					<i class="fa-solid fa-ellipsis"></i>
+				</div>
                 <div class="options-dropdown"></div>
             </div>
         </div>
@@ -25,11 +27,15 @@
     
     <div class='flex justify-evenly text-[#3f3e3f] gap-12'>
         <div class='flex items-center gap-3'>
-			<div class="h-8 w-8 bg-black rounded-full"></div>
+			<div class="h-8 w-8 rounded-full flex justify-center items-center hover:text-red-500 hover:cursor-pointer">
+				<i class="fa-regular fa-heart"></i>
+			</div>
             <p>{{ post.likesCount }}</p>
         </div>
         <div class='flex items-center gap-3'>
-			<div class="h-8 w-8 bg-black rounded-full"></div>
+			<div class="h-8 w-8 rounded-full flex justify-center items-center hover:text-blue-500 hover:cursor-pointer">
+				<i class="fa-regular fa-comment"></i>
+			</div>
             <p>{{ post.commentsCount }}</p>
         </div>
     </div>

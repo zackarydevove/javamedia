@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { DarkModeService } from 'src/app/services/darkmode/dark-mode.service';
 
 @Component({
   selector: 'app-navbar',
@@ -13,7 +14,10 @@ export class NavbarComponent {
 
 	// onChange of searchTerm, fetchSearch
   
-	constructor(private router: Router) {}
+	constructor(
+		private router: Router,
+		protected darkModeService: DarkModeService
+	) {}
   
 	navigate(path: string) {
 		this.router.navigateByUrl(path);
@@ -24,11 +28,10 @@ export class NavbarComponent {
 	}
   
 	toggleDarkMode() {
-		console.log("dark mode");
+		this.darkModeService.toggleDarkMode();
 	}
   
 	handleLogout() {
-		console.log("logout");
 		localStorage.removeItem('authToken');
 		this.router.navigateByUrl('/login');
 	}
