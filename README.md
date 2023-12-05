@@ -11,9 +11,9 @@ Real-Time Interactions: Managing posts and incorporating real-time features usin
 Comprehensive Testing: Ensuring application reliability and performance with extensive testing using JUnit for the backend and Jasmine for the frontend.
 
 <h2>Technologies Used</h2>
-Frontend: Angular, TypeScript
-Backend: Java, Spring Boot
-Database: PostgreSQL
-Real-Time Communication: WebSocket
-Authentication: JWT, OAuth
-Testing Frameworks: JUnit, Jasmine
+Frontend: Angular, TypeScript.
+Backend: Java, Spring Boot.
+Database: PostgreSQL.
+Real-Time Communication: WebSocket.
+Authentication: JWT, OAuth.
+Testing: JUnit, Jasmine.
