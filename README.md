@@ -16,4 +16,4 @@ Backend: Java, Spring Boot.
 Database: PostgreSQL.
 Real-Time Communication: WebSocket.
 Authentication: JWT, OAuth.
-Testing: JUnit, Jasmine.
+Testing: JUnit, Jasmine
