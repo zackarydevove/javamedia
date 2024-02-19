@@ -2,7 +2,7 @@
 
 <h2>Project Description</h2>
 
-JAVAMEDIA is a full-stack social media application that leverages a powerful stack comprising Angular, TypeScript, Java, Spring Boot, PostgreSQL, and WebSocket. This project is designed to provide an engaging and dynamic platform for social media interactions.
+JAVAMEDIA is a full-stack social media application that leverages a powerful stack comprising Angular, TypeScript, Java, Spring Boot, PostgreSQL, and WebSocket. This project is designed to provide an engaging and dynamic platform for social media interactions
 
 <h2>Key Features</h2>
 Full-Stack Social Media Application Development: Utilizing Angular and TypeScript for the frontend, and Java with Spring Boot for the backend.
